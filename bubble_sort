@@ -1,0 +1,20 @@
+//冒泡排序
+void bubble_sort(int arr[], int sz)
+{
+	int i = 0;
+	int j = 0;
+	arr[i];
+	arr[j];
+	for (i = 0; i < sz-1; i++)  //比较一趟的次数。第一趟9次比较，第二趟8次比较。。。
+	{
+		for (j = 0; j < sz - i-1; j++) //两两进行比较
+		{
+			if (arr[j]>arr[j+1]) 
+			{
+				int tmp = arr[j];
+				arr[j] = arr[j+1];
+				arr[j+1] = tmp;
+			}
+		}
+	}
+}
