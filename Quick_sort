@@ -1,0 +1,25 @@
+//快速排序
+void Quick_Sort(int arr[], int left,int right)  //right注意不要越界
+{
+	if (left >= right)  //递归退出条件，相等也没有必要进行
+		return;
+	int i = left;
+	int j = right;
+	int k = arr[left]; 
+	while (i < j)
+	{
+		while (i<j && arr[j] > k)  //从右找比K小的
+		{
+			j--;  //j不能一直减，会造成一些问题，没找到比k小的，向下执行
+		}
+		arr[i] = arr[j];  //k第一开始的数值已记录
+		while (i<j && arr[i] < k)  //从左找比K大的
+		{
+			i++;
+		}
+		arr[j] = arr[i];
+	}
+	arr[i] = k;
+	Quick_Sort(arr,left,i-1);
+	Quick_Sort(arr,i+1,right);
+}
