@@ -5,16 +5,20 @@ void Bubble_Sort(int arr[], int sz)
 	int j = 0;
 	arr[i];
 	arr[j];
-	for (i = 0; i < sz-1; i++)  //表示第几趟
+	for (i = 0; i < sz-1; i++)  //表示第几趟。
 	{
+		bool flag = false;
 		for (j = 0; j < sz - i-1; j++) //两两进行比较
 		{
 			if (arr[j]>arr[j+1]) 
 			{
+				flag = true;
 				int tmp = arr[j];
 				arr[j] = arr[j+1];
 				arr[j+1] = tmp;
 			}
 		}
+		if (flag == false)  //优化：如果是已经有序，那么经历了一趟后，其他趟没必要了。
+			return;
 	}
 }
