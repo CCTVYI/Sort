@@ -1,6 +1,7 @@
 //冒泡排序
 void Bubble_Sort(int arr[], int sz)
 {
+	assert(arr || sz<0);
 	int i = 0;
 	int j = 0;
 	arr[i];
@@ -18,7 +19,7 @@ void Bubble_Sort(int arr[], int sz)
 				arr[j+1] = tmp;
 			}
 		}
-		if (flag == false)  //优化：如果是已经有序，那么经历了一趟后，其他趟没必要了。
+		if (flag == false)  //优化：如果经历了一趟后,标志位没有变化，说明没有进行交换，数据已经有序，那么其他趟没必要了。
 			return;
 	}
 }
