@@ -1,6 +1,7 @@
 //快速排序
 void Quick_Sort(int arr[], int left,int right)  //right注意不要越界
 {
+	assert(arr || left<0 || right<0);
 	if (left >= right)  //递归退出条件，相等也没有必要进行
 		return;
 	int i = left;
@@ -19,7 +20,7 @@ void Quick_Sort(int arr[], int left,int right)  //right注意不要越界
 		}
 		arr[j] = arr[i];
 	}
-	arr[i] = k;
+	arr[i] = k;  //枢轴记录
 	Quick_Sort(arr,left,i-1);
 	Quick_Sort(arr,i+1,right);
 }
