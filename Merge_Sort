@@ -1,0 +1,58 @@
+//归并排序
+#include <stdio.h>
+#include <assert.h>
+#include <stdlib.h>
+#include <string.h>
+
+void _MergeSort(int arr[], int left, int  right, int *tmp);
+void Merge_Sort(int arr[],int sz)
+{
+	assert(arr || sz < 0);
+	int *tmp = (int *)malloc(sizeof(int)*sz);
+	_MergeSort(arr, 0, sz, tmp);
+	free(tmp);
+	tmp = NULL;
+}
+
+//归并操作，将两个有序列合并为一个有序列。前闭后开
+void Merge(int arr[], int left, int mid, int right, int *tmp) 
+{
+	int index1 = left;
+	int index2 = mid;
+	int index = left;  //tmp++，tmp就找不到了，并且每次的左边界需要使用left初始化
+	while (index1 < mid && index2 < right)
+	{
+		if (arr[index1] <= arr[index2])
+		{
+			tmp[index++] = arr[index1++];
+		}
+		else
+		{
+			tmp[index++] = arr[index2++];
+		}
+	}
+	while (index1 < mid )  //剩余元素全部追加到新空间
+	{
+		tmp[index++] = arr[index1++];
+	}
+	while (index2 < right)
+	{
+		tmp[index++] = arr[index2++];
+	}
+	memcpy(arr+left, tmp+left, sizeof(int)*(right - left));
+	//将新空间中的元素直接拷贝到原空间中
+}
+
+//分治法，将列最后划分为一个一个的元素。
+void _MergeSort(int arr[],int left ,int  right, int *tmp)
+{
+	if (right - left <= 1)
+		return;
+	if (left < right)  //如果是while，那么循环永远退不出
+	{
+		int mid = left + ((right - left) >> 1);
+		_MergeSort(arr, left, mid, tmp);  //左半部分
+		_MergeSort(arr, mid, right, tmp);  //右半部分
+		Merge(arr,left,mid,right,tmp);
+	}
+}
