@@ -1,0 +1,15 @@
+void Insert_Sort(int arr[],int sz)
+{
+	int i = 0;
+	for (i = 1; i < sz; i++)
+	{
+		int key = arr[i];  //新抓的牌
+		int j = i - 1;
+		while (j >= 0 && key < arr[j])
+		{
+			arr[j + 1] = arr[j];  //将大的数往右移
+			j--;  //从右向左依次比较。
+		}
+		arr[j + 1] = key;  //如果新抓的牌比左大，直接插在它的右面。
+	}
+}
