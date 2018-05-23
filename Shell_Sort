@@ -1,0 +1,22 @@
+//希尔排序是直接插入排序的一种改进
+
+void Shell_Sort(int arr[],int sz)
+{
+	int gap = sz;
+	int i = 0;
+	while (gap > 1)
+	{
+		gap = gap / 3 + 1;
+		for (i = gap; i < sz;i++)  //i初始值设为gap
+		{
+			int key = arr[i];  //新牌
+			int j =  i-gap;    //分组里的第一个元素
+			while (j >= 0 && arr[j]>key)
+			{
+				arr[j + gap] = arr[j];
+				j = j - gap;
+			}
+			arr[j+gap] = key;
+		}
+	}
+}
