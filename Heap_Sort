@@ -1,0 +1,43 @@
+//堆排序
+
+void Heapadjust(int arr[],int sz,int parent)
+{
+	int child = parent * 2 + 1;  //默认左孩子比右孩子大
+	while (child < sz)
+	{
+		child = parent * 2 + 1;
+		if (arr[child + 1]>arr[child] && child+1 < sz)  //同时孩子节点不能超越边界
+		{
+			child = child + 1;
+		}
+		if (arr[parent] < arr[child])
+		{
+			int tmp = arr[parent];
+			arr[parent] = arr[child];
+			arr[child] = tmp;
+			parent = child;
+			child = parent * 2 + 1;  //父节点与孩子节点都向下推进。
+		}
+		else
+			break;
+	}
+}
+
+void Heap_Sort(int arr[], int sz)
+{
+	assert(arr || sz < 0);
+	int root = (sz - 2) >> 1;  //应该为sz-2,当sz为3时，sz-1不成立。
+	for (; root >= 0; root--)  //root等于0成立，随后root--,变为-1。
+	{
+		Heapadjust(arr, sz, root);
+	}
+	int end = sz - 1;
+	while (end > 0)
+	{
+		int tmp = arr[end];
+		arr[end] = arr[0];
+		arr[0] = tmp;
+		Heapadjust(arr, end, 0);
+		end--;
+	}
+}
